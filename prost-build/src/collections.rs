@@ -2,9 +2,9 @@
 #[non_exhaustive]
 #[derive(Default, Clone, Copy, Debug, PartialEq)]
 pub(crate) enum MapType {
-    /// The [`std::collections::IndexMap`] type.
+    /// The [`indexmap::IndexMap`] type.
     #[default]
-    HashMap,
+    IndexMap,
     /// The [`std::collections::BTreeMap`] type.
     BTreeMap,
 }
@@ -24,7 +24,7 @@ impl MapType {
     /// The `prost-derive` annotation type corresponding to the map type.
     pub fn annotation(&self) -> &'static str {
         match self {
-            MapType::HashMap => "map",
+            MapType::IndexMap => "map",
             MapType::BTreeMap => "btree_map",
         }
     }
@@ -32,7 +32,7 @@ impl MapType {
     /// The fully-qualified Rust type corresponding to the map type.
     pub fn rust_type(&self) -> &'static str {
         match self {
-            MapType::HashMap => "::indexmap::IndexMap",
+            MapType::IndexMap => "::indexmap::IndexMap",
             MapType::BTreeMap => "::prost::alloc::collections::BTreeMap",
         }
     }

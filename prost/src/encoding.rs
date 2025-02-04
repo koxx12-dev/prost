@@ -1330,9 +1330,13 @@ mod test {
         (keys: $keys:tt,
          vals: $vals:tt) => {
             mod hash_map {
-                map_tests!(@private IndexMap, hash_map, $keys, $vals);
+                use indexmap::map;
+
+                map_tests!(@private IndexMap, map, $keys, $vals);
             }
             mod btree_map {
+                use std::collections::btree_map;
+
                 map_tests!(@private BTreeMap, btree_map, $keys, $vals);
             }
         };
@@ -1343,8 +1347,6 @@ mod test {
                   $vals:tt) => {
             $(
                 mod $key_proto {
-                    use std::collections::$map_type;
-
                     use proptest::prelude::*;
 
                     use crate::encoding::*;
