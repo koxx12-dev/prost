@@ -366,7 +366,7 @@ pub struct Basic {
 
     #[prost(map = "string, bytes", tag = "12")]
     #[cfg(feature = "std")]
-    pub bytes_map: ::std::collections::IndexMap<String, Vec<u8>>,
+    pub bytes_map: ::indexmap::IndexMap<String, Vec<u8>>,
 }
 
 #[derive(Clone, PartialEq, Message)]
@@ -382,7 +382,7 @@ pub struct Compound {
 
     #[prost(map = "sint32, message", tag = "4")]
     #[cfg(feature = "std")]
-    pub message_map: ::std::collections::IndexMap<i32, Basic>,
+    pub message_map: ::indexmap::IndexMap<i32, Basic>,
 
     #[prost(btree_map = "sint32, message", tag = "5")]
     pub message_btree_map: prost::alloc::collections::BTreeMap<i32, Basic>,

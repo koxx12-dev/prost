@@ -3,6 +3,8 @@ use alloc::boxed::Box;
 #[cfg(not(feature = "std"))]
 use alloc::vec::Vec;
 
+use indexmap::IndexMap;
+
 use core::fmt::Debug;
 
 use bytes::{Buf, BufMut};
