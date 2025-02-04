@@ -241,7 +241,7 @@ representation in the generated Rust struct.
 
 #### Map Fields
 
-Map fields are converted to a Rust `HashMap` with key and value type converted
+Map fields are converted to a Rust `IndexMap` with key and value type converted
 from the Protobuf key and value types.
 
 #### Message Fields

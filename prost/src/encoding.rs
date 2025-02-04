@@ -1134,8 +1134,8 @@ macro_rules! map {
 
 #[cfg(feature = "std")]
 pub mod hash_map {
-    use std::collections::HashMap;
-    map!(HashMap);
+    use indexmap::IndexMap;
+    map!(IndexMap);
 }
 
 pub mod btree_map {
@@ -1330,7 +1330,7 @@ mod test {
         (keys: $keys:tt,
          vals: $vals:tt) => {
             mod hash_map {
-                map_tests!(@private HashMap, hash_map, $keys, $vals);
+                map_tests!(@private IndexMap, hash_map, $keys, $vals);
             }
             mod btree_map {
                 map_tests!(@private BTreeMap, btree_map, $keys, $vals);
