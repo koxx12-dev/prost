@@ -18,3 +18,4 @@ itertools = ">=0.10.1, <=0.13"
 proc-macro2 = "1.0.60"
 quote = "1"
 syn = { version = "2", features = ["extra-traits"] }
+indexmap = "2.7.1"

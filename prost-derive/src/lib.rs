@@ -13,6 +13,7 @@ use syn::{
     punctuated::Punctuated, Data, DataEnum, DataStruct, DeriveInput, Expr, Fields, FieldsNamed,
     FieldsUnnamed, Ident, Index, Variant,
 };
+use indexmap::IndexMap;
 
 mod field;
 use crate::field::Field;
