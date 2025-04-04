@@ -1,4 +1,5 @@
-use indexmap::{IndexMap, map};
+use std::collections::HashMap;
+use indexmap::map;
 
 use itertools::Itertools;
 
@@ -19,13 +20,13 @@ fn validate_proto_path(path: &str) -> Result<(), String> {
 
 #[derive(Debug)]
 pub struct ExternPaths {
-    extern_paths: IndexMap<String, String>,
+    extern_paths: HashMap<String, String>,
 }
 
 impl ExternPaths {
     pub fn new(paths: &[(String, String)], prost_types: bool) -> Result<ExternPaths, String> {
         let mut extern_paths = ExternPaths {
-            extern_paths: IndexMap::new(),
+            extern_paths: HashMap::new(),
         };
 
         for (proto_path, rust_path) in paths {

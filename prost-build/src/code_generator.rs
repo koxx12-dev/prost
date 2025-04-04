@@ -1,7 +1,7 @@
 use std::ascii;
 use std::borrow::Cow;
 use indexmap::IndexMap;
-use std::collections::HashSet;
+use std::collections::{HashMap, HashSet};
 use std::iter;
 
 use itertools::{Either, Itertools};
@@ -171,7 +171,7 @@ impl CodeGenerator<'_> {
         // of the map field entry types. The path index of the nested message types is preserved so
         // that comments can be retrieved.
         type NestedTypes = Vec<(DescriptorProto, usize)>;
-        type MapTypes = IndexMap<String, (FieldDescriptorProto, FieldDescriptorProto)>;
+        type MapTypes = HashMap<String, (FieldDescriptorProto, FieldDescriptorProto)>;
         let (nested_types, map_types): (NestedTypes, MapTypes) = message
             .nested_type
             .into_iter()
@@ -1157,7 +1157,7 @@ fn build_enum_value_mappings<'a>(
     enum_values: &'a [EnumValueDescriptorProto],
 ) -> Vec<EnumVariantMapping<'a>> {
     let mut numbers = HashSet::new();
-    let mut generated_names = IndexMap::new();
+    let mut generated_names = HashMap::new();
     let mut mappings = Vec::new();
 
     for (idx, value) in enum_values.iter().enumerate() {

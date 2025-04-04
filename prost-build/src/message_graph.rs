@@ -1,4 +1,5 @@
-use indexmap::IndexMap;
+use std::collections::HashMap;
+use std::hash::Hash;
 
 use petgraph::algo::has_path_connecting;
 use petgraph::graph::NodeIndex;
@@ -15,9 +16,9 @@ use crate::path::PathMap;
 /// The goal is to recognize when message types are recursively nested, so
 /// that fields can be boxed when necessary.
 pub struct MessageGraph {
-    index: IndexMap<String, NodeIndex>,
+    index: HashMap<String, NodeIndex>,
     graph: Graph<String, ()>,
-    messages: IndexMap<String, DescriptorProto>,
+    messages: HashMap<String, DescriptorProto>,
     boxed: PathMap<()>,
 }
 
@@ -27,9 +28,9 @@ impl MessageGraph {
         boxed: PathMap<()>,
     ) -> MessageGraph {
         let mut msg_graph = MessageGraph {
-            index: IndexMap::new(),
+            index: HashMap::new(),
             graph: Graph::new(),
-            messages: IndexMap::new(),
+            messages: HashMap::new(),
             boxed,
         };
 
