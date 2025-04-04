@@ -30,8 +30,8 @@ impl MapTy {
 
     fn lib(&self) -> TokenStream {
         match self {
-            MapTy::HashMap => quote! { std },
-            MapTy::BTreeMap => quote! { prost::alloc },
+            MapTy::HashMap => quote! { indexmap },
+            MapTy::BTreeMap => quote! { prost::alloc::collections },
         }
     }
 }
@@ -334,14 +334,14 @@ impl Field {
 
                 let value = ty.rust_type();
                 quote! {
-                    struct #wrapper_name<'a>(&'a ::#libname::collections::#type_name<#key, #value>);
+                    struct #wrapper_name<'a>(&'a ::#libname::#type_name<#key, #value>);
                     impl<'a> ::core::fmt::Debug for #wrapper_name<'a> {
                         #fmt
                     }
                 }
             }
             ValueTy::Message => quote! {
-                struct #wrapper_name<'a, V: 'a>(&'a ::#libname::collections::#type_name<#key, V>);
+                struct #wrapper_name<'a, V: 'a>(&'a ::#libname::#type_name<#key, V>);
                 impl<'a, V> ::core::fmt::Debug for #wrapper_name<'a, V>
                 where
                     V: ::core::fmt::Debug + 'a,
