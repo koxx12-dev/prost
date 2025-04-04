@@ -1,5 +1,4 @@
-use std::collections::HashMap;
-use indexmap::map;
+use std::collections::{HashMap, hash_map};
 
 use itertools::Itertools;
 
@@ -68,13 +67,13 @@ impl ExternPaths {
     fn insert(&mut self, proto_path: String, rust_path: String) -> Result<(), String> {
         validate_proto_path(&proto_path)?;
         match self.extern_paths.entry(proto_path) {
-            map::Entry::Occupied(occupied) => {
+            hash_map::Entry::Occupied(occupied) => {
                 return Err(format!(
                     "duplicate extern Protobuf path: {}",
                     occupied.key()
                 ));
             }
-            map::Entry::Vacant(vacant) => vacant.insert(rust_path),
+            hash_map::Entry::Vacant(vacant) => vacant.insert(rust_path),
         };
         Ok(())
     }

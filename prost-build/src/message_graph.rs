@@ -1,5 +1,4 @@
 use std::collections::HashMap;
-use std::hash::Hash;
 
 use petgraph::algo::has_path_connecting;
 use petgraph::graph::NodeIndex;

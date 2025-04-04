@@ -1,6 +1,5 @@
 use std::ascii;
 use std::borrow::Cow;
-use indexmap::IndexMap;
 use std::collections::{HashMap, HashSet};
 use std::iter;
 
